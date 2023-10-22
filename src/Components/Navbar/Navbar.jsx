@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import logo from '../../assets/logo.svg';
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { HiOutlineSearch } from "react-icons/hi";
@@ -24,9 +24,9 @@ const Navbar = () => {
                         {menu}
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl">
+                <Link to={"/"} className="btn btn-ghost normal-case text-xl hover:bg-transparent">
                     <img src={logo} alt="" className='w-16' />
-                </a>
+                </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
