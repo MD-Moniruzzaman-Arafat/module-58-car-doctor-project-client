@@ -16,11 +16,12 @@ const Services = () => {
     return (
         <div className="mb-20">
             <ServicesHeader></ServicesHeader>
-            <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-5 my-5">
+            <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-5 my-10">
                 {
                     services.map(data => <ServicesCard key={data._id} data={data}></ServicesCard>)
                 }
             </div>
+            <button className="btn btn-outline rounded-sm block w-50 mx-auto btn-primary">More Services</button>
         </div>
     );
 };
