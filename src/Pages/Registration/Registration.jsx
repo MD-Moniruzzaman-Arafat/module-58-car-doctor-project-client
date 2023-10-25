@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import loginRegistrationImg from '../../assets/images/login/login.svg';
 import { useContext } from "react";
 import { AuthContext } from "../../ContextProvider/ContextProvider";
+import { updateProfile } from "firebase/auth";
 
 
 const Registration = () => {
@@ -21,6 +22,10 @@ const Registration = () => {
         createUser(email, password)
             .then(result => {
                 console.log(result.user);
+                updateProfile(result.user, {
+                    displayName: userName,
+                    photoURL: ""
+                })
             })
             .catch(error => {
                 console.log(error.message)
