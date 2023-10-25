@@ -2,9 +2,33 @@ import { FaFacebookF, FaLinkedinIn } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import loginRegistrationImg from '../../assets/images/login/login.svg';
+import { useContext } from "react";
+import { AuthContext } from "../../ContextProvider/ContextProvider";
 
 
 const Registration = () => {
+
+    const { createUser } = useContext(AuthContext);
+
+    const handleRegistration = event => {
+        event.preventDefault();
+        const form = event.target;
+        const userName = form.userName.value;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        // create User
+        createUser(email, password)
+            .then(result => {
+                console.log(result.user);
+            })
+            .catch(error => {
+                console.log(error.message)
+            })
+
+    }
+
+
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col lg:flex-row">
@@ -12,25 +36,25 @@ const Registration = () => {
                     <img src={loginRegistrationImg} className="w-3/4" alt="" />
                 </div>
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                    <form className="card-body">
+                    <form className="card-body" onSubmit={handleRegistration}>
                         <h1 className="text-3xl text-center font-bold">Registration</h1>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">User Name</span>
                             </label>
-                            <input type="text" placeholder="user name" className="input input-bordered" required />
+                            <input type="text" name="userName" placeholder="user name" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="email" placeholder="email" className="input input-bordered" required />
+                            <input type="email" name="email" placeholder="email" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" placeholder="password" className="input input-bordered" required />
+                            <input type="password" name="password" placeholder="password" className="input input-bordered" required />
 
                         </div>
                         <div className="form-control mt-6">
